@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @task.name %>
+</p>
+
+<img src="<%= @task.photo %>" alt="">
+
+
+<%= link_to 'Back', tasks_path %>
+
+<div class="row">
+<div class="col">
+  <h1>Usuarios que la han completado</h1>
+<% @task.taskcompleteds.each do |tc| %>
+  <p><%= tc.user.name %> | <%= tc.user.email %></p>
+<% end %>
+</div>
+
+<div class="col">
+  <h1>Top five</h1>
+<% @top.each do |tc| %>
+  <p><%= time_ago_in_words(tc.created_at) %><%= tc.user.name %> | <%= tc.user.email %></p>
+<% end %>
+</div>
+
+
+</div>
