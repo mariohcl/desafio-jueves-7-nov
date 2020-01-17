@@ -1,28 +1,49 @@
 <div class="container">
-  <div class="row">
+  <div class="row main-row-custom">
 
     <p id="notice"><%= notice %></p>
 
     <h1>Tasks</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      Repellendus commodi reprehenderit minima, assumenda
+      temporibus quaerat ut. Tempora dolores quasi</p>
 
-    <div class="row">
+    <div class="row custom-row">
 
     <% @tasks.each do |task| %>
-    <div class="card" style="width: 18rem;">
-      <img src="<%= task.photo %>" class="card-img-top" alt="...">
-      <div class="card-body">
+    <div class="card custom-card" style="background-image: url(<%= task.photo %>)" >
+
+      <div class="trame"></div>
+      <div class="card-body custom-card-body">
+
         <h5 class="card-title"><%= task.name %></h5>
-        <%= link_to 'Show', task %>
 
-      <% if user_signed_in? %>
-        <% if current_user.taskcompleteds.find_by(task_id: task.id) %>
-          <%= link_to "Cancelar", task_taskcompleted_path(task, current_user), class:'btn btn-warning', method: :delete %>
+        <nav class="acces-menu">
+          <ul>
+            <li>
+              <%= link_to 'Ver', task, class: "show" %>
+            </li>
 
-          <% else %>
-          <%= link_to "Completar", task_taskcompleteds_path(task), class:'btn btn-primary', method: :post %>
+            <% if user_signed_in? %>
+              <% if current_user.taskcompleteds.find_by(task_id: task.id) %>
+              <li>
+                <%= link_to "Cancelar", task_taskcompleted_path(task, current_user), class:'cancel', method: :delete %>
+              </li>
+                <% else %>
+                <li>
+                <%= link_to "Completar", task_taskcompleteds_path(task), class:'completar', method: :post %>
+                </li>
+              <% end %>
+            <% end %>
 
-        <% end %>
-      <% end %>
+
+
+          </ul>
+
+        </nav>
+
+
+
 
       </div>
 

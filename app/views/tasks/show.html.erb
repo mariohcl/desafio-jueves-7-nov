@@ -1,29 +1,34 @@
+<div class="container">
+  <div class="row main-row-custom main-inter-custom">
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @task.name %>
-</p>
-
-<img src="<%= @task.photo %>" alt="">
 
 
-<%= link_to 'Back', tasks_path %>
+  <img src="<%= @task.photo %>" alt="">
 
-<div class="row">
+  <h1><strong>Name:</strong> <%= @task.name %></h1>
+
+  <%= link_to 'volver', tasks_path, class: "volver" %>
+
+<div class="row row-detail">
 <div class="col">
-  <h1>Usuarios que la han completado</h1>
+  <h2>Usuarios que la han completado</h2>
 <% @task.taskcompleteds.each do |tc| %>
   <p><%= tc.user.name %> | <%= tc.user.email %></p>
 <% end %>
 </div>
 
 <div class="col">
-  <h1>Top five</h1>
+  <h2>Top five</h2>
 <% @top.each do |tc| %>
   <p><%= time_ago_in_words(tc.created_at) %><%= tc.user.name %> | <%= tc.user.email %></p>
 <% end %>
 </div>
 
 
+</div>
+
+
+</div>
 </div>
